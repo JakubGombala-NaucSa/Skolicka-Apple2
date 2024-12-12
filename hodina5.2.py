@@ -1,4 +1,5 @@
 import tkinter as tk
+from random import randint
 
 root = tk.Tk()
 root.title("Preteky lopticiek")
@@ -10,10 +11,21 @@ lopticky = []
 
 def Start():
     Nakresli_lopticky()
+    Hra()
 
 def Nakresli_lopticky():
+    posun = 10
     for i in range(10):
-        lopticka = platno.create_oval(10 + 20*i, 10, 30 + 20*i, 30, fill="red")
+        lopticka = platno.create_oval(posun, 10, 20 + posun, 30, fill="red")
         lopticky.append(lopticka)
+        posun += 30
+
+def Hra():
+    for lopticka in lopticky:
+        platno.move(lopticka, 0, 10)
+        
+    platno.after(100, Hra)
+
+randint(1,10)
 
 Start()
